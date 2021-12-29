@@ -1,0 +1,66 @@
+http传输方式保存账号密码可以在此用户目录下找到隐藏文件.netrc,打开编辑添加或者直接创建
+
+machine git.baidu-wenxue.com
+        login yangfan
+        password yangfan_zongheng
+
+即可无需输入账号密码直接访问远程仓库
+
+
+点击完Fork按钮后，在32我的目录执行
+https : git clone https://gitlab.baidu-shucheng.com/yangfan/zhangfei.git 
+ssh :git clone git@10.3.138.32:yangfan/strawberry.git
+克隆一份到我的32目录，然后
+
+
+给http://10.3.138.32:3001/xiaobo/strawberry.git起个别名叫 admin-origin
+ git remote add admin-origin http://10.3.138.32:3001/xiaobo/strawberry.git
+
+ git fetch  显示远程分支
+ git checkout -b qa origin/qa  拉取远程主干上叫qa的分支并复制一份到本机
+
+
+git checkout -b local_branch_name; git pull admin-origin master
+
+然后在分支上开发之后合并到自己的主干，然后提交自己的主干，再申请和项目主干合并
+
+提示：开发这个项目时先fork一个到个人空间 然后在开发目录下git add remote 个人.git  推送代码到个人的分支 然后在gitlab发合并请求
+
+拉分支
+git branch origin QA
+
+push 分支
+git branch origin QA:QA
+
+合并分支到主干
+先切到master上，然后
+git merge --squash QA
+QA为分支名称
+
+
+git remote add yangfan https://gitlab.baidu-shucheng.com/yangfan/rivendell.git
+
+如果需要屏蔽某个文件夹或者文件不跟踪提交，在.gitignore 添加，如果没有则需要创建和初始化.gitignore文件
+
+
+
+git remote -v   查看远程服务器列表
+
+当我想从远程仓库里拉取一条本地不存在的分支时：
+
+git checkout -b 本地分支名 origin/远程分支名
+
+如果出现提示：
+
+fatal: Cannot update paths and switch to branch 'dev2' at the same time.
+Did you intend to checkout 'origin/dev2' which can not be resolved as commit?
+
+表示拉取不成功。我们需要先执行
+
+git fetch
+
+然后再执行
+
+git checkout -b 本地分支名 origin/远程分支名
+
+即可。
